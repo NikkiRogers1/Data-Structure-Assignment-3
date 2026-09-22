@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class FileSystemAnalyzer {
     public static int countFilesRecursive(FileSystemItem item) {
 
@@ -44,4 +46,28 @@ public static FileItem findLargestFileRecursive(FileSystemItem item) {
 
     return largestFile;
 } 
+
+public static int countFilesIterative(Folder rootFolder) {
+    Stack<FileSystemItem> stack = new Stack<>();
+    
+    stack.push(rootFolder);
+    int fileCount = 0;
+
+    while(!stack.isEmpty()) {
+    FileSystemItem current = stack.pop();
+
+    if (current instanceof FileItem) {
+        fileCount++;
+    }
+    if (current instanceof Folder) {
+    for (FileSystemItem child : ((Folder) current).getItems()) {
+        stack.push(child);
+    }
+    
 }
+    }
+
+    return fileCount;
+}
+}
+
