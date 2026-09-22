@@ -1,5 +1,18 @@
 public class Main {
-    static void main() {
-        System.out.println("Hello World!");
+    public static void main(String[] args) {
+    
+        Folder root = new Folder("Root");
+        Folder pictures = new Folder ("Pictures");
+        Folder vacation = new Folder ("Vacations");
+        FileItem beach = new FileItem("beach.jpg", 500);
+        FileItem renfair = new FileItem("renFair.jpg", 600);
+
+        root.addItem(pictures);
+        pictures.addItem(vacation);
+        vacation.addItem(beach);
+        vacation.addItem(renfair);
+
+        int fileCount = FileSystemAnalyzer.countFilesRecursive(root);
+        System.out.println("Total files: " + fileCount);
     }
 }
